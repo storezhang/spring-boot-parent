@@ -1,0 +1,16 @@
+language: java
+
+jdk:
+  - oraclejdk8
+
+script: mvn clean verify --settings .travis/settings.xml
+
+after_success:
+  - chmod -R 777 .travis/deploy-to-sonatype.sh
+  - .travis/deploy-to-sonatype.sh
+
+notifications:
+  email:
+    - admin@ruijc.com
+  on_success: never
+  on_failure: always
